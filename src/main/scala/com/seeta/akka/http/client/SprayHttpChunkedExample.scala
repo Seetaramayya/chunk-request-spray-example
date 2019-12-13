@@ -34,7 +34,7 @@ class SprayHttpChunkedExample(val inMemoryData: Array[Byte], val request: HttpRe
   private val chunkSize = 1024
   private val input: InputStream = new ByteArrayInputStream(inMemoryData)
   private val buffer = new Array[Byte](chunkSize)
-  private implicit val system = context.system
+  private implicit val system: ActorSystem = context.system
   private var counter = 1
 
   private def start: Receive = {
@@ -111,8 +111,8 @@ class SprayHttpChunkedExample(val inMemoryData: Array[Byte], val request: HttpRe
 object HttpClientApp extends App {
   //------------- CHANGE FOLLOWING PORT ---------------
   private val host = HOST
-//  private val port = AKKA_HTTP_SERVER_PORT
-  private val port = SPRAY_SERVER_PORT
+  private val port = AKKA_HTTP_SERVER_PORT
+//  private val port = SPRAY_SERVER_PORT
   //---------------------------------------------------
 
   private val fileName = "seeta.png"
